@@ -60,6 +60,7 @@ const featuredGrid = document.getElementById('featured-grid');
 const newsletterForm = document.getElementById('newsletter-form');
 const newsletterSuccess = document.getElementById('newsletter-success');
 const contactForm = document.getElementById('contact-form');
+const footerNewsletterForm = document.getElementById('footer-newsletter-form');
 
 // Mobile Menu Toggle
 if (mobileMenuBtn && navMobile) {
@@ -194,7 +195,7 @@ filterBtns.forEach(btn => {
     });
 });
 
-// Newsletter Form Submission
+// Newsletter Form Submission (Main)
 if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -214,6 +215,31 @@ if (newsletterForm) {
             newsletterSuccess.classList.remove('show');
             newsletterForm.reset();
         }, 3000);
+    });
+}
+
+// Footer Newsletter Form Submission
+if (footerNewsletterForm) {
+    footerNewsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const email = footerNewsletterForm.querySelector('input[type="email"]').value;
+        
+        // Simulate newsletter subscription
+        console.log('Footer Newsletter subscription:', email);
+        
+        // Show success message
+        const button = footerNewsletterForm.querySelector('button');
+        const originalText = button.textContent;
+        button.textContent = 'Subscribed!';
+        button.style.background = '#28a745';
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+            footerNewsletterForm.reset();
+        }, 2000);
     });
 }
 
@@ -240,9 +266,21 @@ if (contactForm) {
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (product) {
-        console.log('Added to cart:', product);
-        // You can implement cart functionality here
-        alert(`${product.name} added to cart!`);
+        cart.push(product);
+        updateCartCount();
+        
+        // Show success message with animation
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'Added!';
+        button.style.background = 'var(--gold)';
+        
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+        }, 1000);
+        
+        console.log('Cart updated:', cart);
     }
 }
 
@@ -318,28 +356,6 @@ function updateCartCount() {
     }
 }
 
-// Enhanced addToCart function
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        cart.push(product);
-        updateCartCount();
-        
-        // Show success message with animation
-        const button = event.target;
-        const originalText = button.textContent;
-        button.textContent = 'Added!';
-        button.style.background = 'var(--gold)';
-        
-        setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-        }, 1000);
-        
-        console.log('Cart updated:', cart);
-    }
-}
-
 // Smooth scroll for hero buttons
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -385,3 +401,57 @@ function preloadImages() {
 
 // Call preload function
 preloadImages();
+
+// Footer scroll to top functionality
+function addScrollToTop() {
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        const scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5,12 12,5 19,12"></polyline>
+            </svg>
+        `;
+        scrollToTopBtn.className = 'scroll-to-top';
+        scrollToTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        `;
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+        
+        document.body.appendChild(scrollToTopBtn);
+    }
+}
+
+// Initialize scroll to top
+addScrollToTop();
