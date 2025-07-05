@@ -62,6 +62,9 @@ const newsletterSuccess = document.getElementById('newsletter-success');
 const contactForm = document.getElementById('contact-form');
 const footerNewsletterForm = document.getElementById('footer-newsletter-form');
 
+// Cart functionality
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
 // Mobile Menu Toggle
 if (mobileMenuBtn && navMobile) {
     mobileMenuBtn.addEventListener('click', () => {
@@ -266,7 +269,20 @@ if (contactForm) {
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (product) {
-        cart.push(product);
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                ...product,
+                quantity: 1
+            });
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
         updateCartCount();
         
         // Show success message with animation
@@ -299,6 +315,48 @@ function quickView(productId) {
         console.log('Quick view:', product);
         // You can implement quick view modal here
         alert(`Quick view: ${product.name}\n${product.description}\nPrice: $${product.price}`);
+    }
+}
+
+// Cart functionality
+function updateCartCount() {
+    const cartBtn = document.querySelector('.cart-btn');
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    if (cartBtn && count > 0) {
+        // Remove existing count if any
+        const existingCount = cartBtn.querySelector('.cart-count');
+        if (existingCount) {
+            existingCount.remove();
+        }
+        
+        // Add new count
+        const countElement = document.createElement('span');
+        countElement.className = 'cart-count';
+        countElement.textContent = count;
+        countElement.style.cssText = `
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--gold);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        `;
+        
+        cartBtn.style.position = 'relative';
+        cartBtn.appendChild(countElement);
+        
+        // Add click handler to go to cart page
+        cartBtn.onclick = () => {
+            window.location.href = 'cart.html';
+        };
     }
 }
 
@@ -336,24 +394,9 @@ function initApp() {
     
     // Set initial active nav link
     updateActiveNavLink();
-}
-
-// Cart functionality (basic implementation)
-let cart = [];
-
-function updateCartCount() {
-    const cartBtn = document.querySelector('.cart-btn');
-    if (cartBtn && cart.length > 0) {
-        cartBtn.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="m16 10-4 4-4-4"></path>
-            </svg>
-            <span style="position: absolute; top: -5px; right: -5px; background: var(--gold); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 12px; display: flex; align-items: center; justify-content: center;">${cart.length}</span>
-        `;
-        cartBtn.style.position = 'relative';
-    }
+    
+    // Update cart count on page load
+    updateCartCount();
 }
 
 // Smooth scroll for hero buttons
