@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marc Aroma - Luxury Fragrances</title>
-    <meta name="description" content="Discover Marc Aroma's collection of luxury fragrances. Premium perfumes crafted with the finest ingredients for an unforgettable scent experience.">
+    <title>Products - Marc Aroma</title>
+    <meta name="description" content="Explore our complete collection of luxury fragrances. Find your perfect scent from our curated selection of premium perfumes.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,9 +29,9 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="nav-desktop">
-                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="index.html" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link">About</a>
-                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="products.html" class="nav-link active">Products</a>
                     <a href="services.html" class="nav-link">Services</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
@@ -73,106 +73,147 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="container">
-                    <div class="hero-text">
-                        <span class="hero-badge">New Collection</span>
-                        <h1 class="hero-title">
-                            Discover Your
-                            <span class="highlight">Signature Scent</span>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Immerse yourself in our curated collection of luxury fragrances, 
-                            each crafted to tell your unique story through scent.
-                        </p>
-                        <div class="hero-buttons">
-                            <a href="products.html" class="btn btn-primary">
-                                <span>Explore Collection</span>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12,5 19,12 12,19"></polyline>
-                                </svg>
-                            </a>
-                            <a href="about.html" class="btn btn-secondary">Learn More</a>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="page-header-content">
+                    <nav class="breadcrumb">
+                        <a href="index.html">Home</a>
+                        <span>/</span>
+                        <span>Products</span>
+                    </nav>
+                    <h1>Our Fragrances</h1>
+                    <p>Discover our complete collection of luxury fragrances, each crafted to perfection.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="container">
+                <!-- Category Filter -->
+                <div class="products-filter">
+                    <div class="filter-header">
+                        <h2>Filter Products</h2>
+                        <button class="filter-reset" id="filter-reset">Reset All</button>
+                    </div>
+                    
+                    <div class="filter-groups">
+                        <div class="filter-group">
+                            <h3>Category</h3>
+                            <div class="category-filter">
+                                <button class="filter-btn active" data-category="all">All</button>
+                                <button class="filter-btn" data-category="women">For Her</button>
+                                <button class="filter-btn" data-category="men">For Him</button>
+                                <button class="filter-btn" data-category="unisex">Unisex</button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h3>Price Range</h3>
+                            <div class="price-filter">
+                                <button class="filter-btn" data-price="all">All Prices</button>
+                                <button class="filter-btn" data-price="0-100">$0 - $100</button>
+                                <button class="filter-btn" data-price="100-150">$100 - $150</button>
+                                <button class="filter-btn" data-price="150+">$150+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h3>Sort By</h3>
+                            <select class="sort-select" id="sort-select">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Name: A to Z</option>
+                                <option value="rating">Highest Rated</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Hero Features -->
-            <div class="hero-features">
-                <div class="container">
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                            </div>
-                            <h3>Premium Quality</h3>
-                            <p>Finest ingredients sourced globally</p>
+
+                <!-- Products Grid -->
+                <div class="products-container">
+                    <div class="products-header">
+                        <div class="products-count">
+                            <span id="products-count">0</span> products found
                         </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12,6 12,12 16,14"></polyline>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid" aria-label="Grid view">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
                                 </svg>
-                            </div>
-                            <h3>Fast Delivery</h3>
-                            <p>Free shipping on orders over $100</p>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </button>
+                            <button class="view-btn" data-view="list" aria-label="List view">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
                                 </svg>
-                            </div>
-                            <h3>Handcrafted</h3>
-                            <p>Artisanal perfumery techniques</p>
+                            </button>
                         </div>
+                    </div>
+                    
+                    <div class="products-grid" id="products-grid">
+                        <!-- Products will be loaded by JavaScript -->
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="load-more-container">
+                        <button class="btn btn-outline" id="load-more">Load More Products</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Products Section -->
-        <section class="featured-products">
+        <!-- Collections Section -->
+        <section class="collections-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-badge">Best Sellers</span>
-                    <h2>Featured Fragrances</h2>
-                    <p>Discover our most beloved scents, each carefully crafted to tell a unique story.</p>
+                    <span class="section-badge">Collections</span>
+                    <h2>Signature Collections</h2>
+                    <p>Explore our curated collections, each with its own unique character and story.</p>
                 </div>
                 
-                <!-- Products Grid -->
-                <div class="products-grid" id="featured-products-grid">
-                    <!-- Products will be loaded by JavaScript -->
-                </div>
-
-                <div class="section-footer">
-                    <a href="products.html" class="btn btn-outline">View All Products</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter Section -->
-        <section class="newsletter">
-            <div class="container">
-                <div class="newsletter-content">
-                    <div class="newsletter-text">
-                        <h2>Stay in the Scent</h2>
-                        <p>Be the first to know about new fragrances, exclusive offers, and behind-the-scenes stories from our perfumery.</p>
-                    </div>
-                    <form class="newsletter-form" id="newsletter-form">
-                        <div class="form-group">
-                            <input type="email" placeholder="Enter your email address" required>
-                            <button type="submit">Subscribe</button>
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="https://images.pexels.com/photos/1190830/pexels-photo-1190830.jpeg" alt="Floral Collection" loading="lazy">
+                            <div class="collection-overlay">
+                                <h3>Floral Essence</h3>
+                                <p>Delicate and romantic fragrances inspired by blooming gardens</p>
+                                <button class="btn btn-white" onclick="filterByCollection('floral')">Explore Collection</button>
+                            </div>
                         </div>
-                        <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
-                    </form>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="https://images.pexels.com/photos/1190831/pexels-photo-1190831.jpeg" alt="Oriental Collection" loading="lazy">
+                            <div class="collection-overlay">
+                                <h3>Oriental Mystique</h3>
+                                <p>Rich and exotic scents with warm spices and precious woods</p>
+                                <button class="btn btn-white" onclick="filterByCollection('oriental')">Explore Collection</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="https://images.pexels.com/photos/1190832/pexels-photo-1190832.jpeg" alt="Fresh Collection" loading="lazy">
+                            <div class="collection-overlay">
+                                <h3>Fresh Breeze</h3>
+                                <p>Clean and invigorating fragrances for everyday elegance</p>
+                                <button class="btn btn-white" onclick="filterByCollection('fresh')">Explore Collection</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -192,7 +233,7 @@
                             <p>Luxury Fragrances</p>
                         </div>
                     </div>
-                    <p>Crafting luxury fragrances that capture the essence of sophistication and elegance. Each bottle tells a story of passion, artistry, and timeless beauty.</p>
+                    <p>Crafting luxury fragrances that capture the essence of sophistication and elegance.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Instagram">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -276,5 +317,6 @@
     </div>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/products.js"></script>
 </body>
 </html>

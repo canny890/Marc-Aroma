@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Marc Aroma</title>
+    <meta name="description" content="Explore our premium services including custom fragrance creation, consultation, and exclusive experiences.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <span>M</span>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Marc Aroma</h1>
+                        <p>Luxury Fragrances</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="services.html" class="nav-link active">Services</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="search-btn" id="search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <a href="cart.html" class="cart-btn" aria-label="Shopping Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="m16 10-4 4-4-4"></path>
+                        </svg>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                        <span class="hamburger"></span>
+                        <span class="hamburger"></span>
+                        <span class="hamburger"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile" id="nav-mobile">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="page-header-content">
+                    <nav class="breadcrumb">
+                        <a href="index.html">Home</a>
+                        <span>/</span>
+                        <span>Services</span>
+                    </nav>
+                    <h1>Our Services</h1>
+                    <p>Experience luxury fragrance services tailored to your unique preferences and needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="services-overview">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Premium Services</span>
+                    <h2>Personalized Fragrance Experiences</h2>
+                    <p>From custom creations to expert consultations, we offer exclusive services to enhance your fragrance journey.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5"></path>
+                                <path d="M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                        <h3>Custom Fragrance Creation</h3>
+                        <p>Work with our master perfumers to create a unique fragrance that reflects your personality and style. A truly one-of-a-kind scent crafted exclusively for you.</p>
+                        <ul class="service-features">
+                            <li>Personal consultation session</li>
+                            <li>Scent profiling and preferences</li>
+                            <li>Multiple iterations and refinements</li>
+                            <li>Exclusive bottle design</li>
+                            <li>Lifetime formula protection</li>
+                        </ul>
+                        <div class="service-price">Starting at $500</div>
+                        <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h4l5 4V7l-5 4z"></path>
+                                <path d="M22 9l-2 2-2-2"></path>
+                                <path d="M17 17l2-2 2 2"></path>
+                                <path d="M20 7v10"></path>
+                            </svg>
+                        </div>
+                        <h3>Fragrance Consultation</h3>
+                        <p>Expert guidance to help you discover your perfect scent. Our fragrance specialists will analyze your preferences and recommend the ideal fragrances for you.</p>
+                        <ul class="service-features">
+                            <li>Scent personality assessment</li>
+                            <li>Lifestyle and occasion matching</li>
+                            <li>Fragrance layering techniques</li>
+                            <li>Seasonal recommendations</li>
+                            <li>Care and storage tips</li>
+                        </ul>
+                        <div class="service-price">$75 per session</div>
+                        <a href="contact.html" class="btn btn-primary">Schedule Session</a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </div>
+                        <h3>VIP Membership</h3>
+                        <p>Join our exclusive VIP program for priority access to new releases, special events, and personalized services with exceptional benefits.</p>
+                        <ul class="service-features">
+                            <li>Early access to new collections</li>
+                            <li>Exclusive member-only fragrances</li>
+                            <li>Complimentary consultations</li>
+                            <li>Special event invitations</li>
+                            <li>15% discount on all purchases</li>
+                        </ul>
+                        <div class="service-price">$200 annually</div>
+                        <a href="contact.html" class="btn btn-primary">Join VIP</a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <h3>Virtual Fragrance Experience</h3>
+                        <p>Experience our fragrances from the comfort of your home with our virtual consultation and sample program designed for remote customers.</p>
+                        <ul class="service-features">
+                            <li>Video consultation session</li>
+                            <li>Curated sample collection</li>
+                            <li>Digital scent profiling</li>
+                            <li>Follow-up recommendations</li>
+                            <li>Convenient home delivery</li>
+                        </ul>
+                        <div class="service-price">$50 per session</div>
+                        <a href="contact.html" class="btn btn-primary">Start Virtual Experience</a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3>Corporate Gifting</h3>
+                        <p>Elegant corporate gifting solutions with customized packaging and bulk ordering options for businesses looking to make a lasting impression.</p>
+                        <ul class="service-features">
+                            <li>Custom packaging design</li>
+                            <li>Bulk pricing discounts</li>
+                            <li>Corporate branding options</li>
+                            <li>Dedicated account manager</li>
+                            <li>Flexible delivery scheduling</li>
+                        </ul>
+                        <div class="service-price">Custom pricing</div>
+                        <a href="contact.html" class="btn btn-primary">Request Quote</a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="7.5,12 10.5,15 16.5,9"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Fragrance Maintenance</h3>
+                        <p>Keep your fragrances in perfect condition with our maintenance and refill services, ensuring your favorite scents last longer and perform better.</p>
+                        <ul class="service-features">
+                            <li>Bottle cleaning and maintenance</li>
+                            <li>Fragrance refill services</li>
+                            <li>Storage optimization advice</li>
+                            <li>Quality assessment</li>
+                            <li>Atomizer replacement</li>
+                        </ul>
+                        <div class="service-price">$25 per service</div>
+                        <a href="contact.html" class="btn btn-primary">Schedule Service</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Our Process</span>
+                    <h2>How We Create Your Perfect Fragrance</h2>
+                    <p>Our systematic approach ensures every custom fragrance is a masterpiece tailored to your unique preferences.</p>
+                </div>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Initial Consultation</h3>
+                            <p>We begin with an in-depth consultation to understand your preferences, lifestyle, and fragrance goals. This helps us create a detailed scent profile.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>Scent Exploration</h3>
+                            <p>Our experts guide you through various scent families and notes, helping you discover what resonates with your personal taste and style.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Custom Blending</h3>
+                            <p>Our master perfumers create initial blends based on your preferences, carefully balancing top, middle, and base notes for the perfect composition.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h3>Refinement</h3>
+                            <p>We refine the fragrance through multiple iterations, adjusting the formula until it perfectly captures your vision and exceeds your expectations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">05</div>
+                        <div class="step-content">
+                            <h3>Final Creation</h3>
+                            <p>Once approved, we create your final fragrance with premium packaging and provide detailed care instructions for optimal longevity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Client Stories</span>
+                    <h2>What Our Clients Say</h2>
+                    <p>Hear from customers who have experienced our personalized fragrance services.</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <span>★★★★★</span>
+                            </div>
+                            <p>"The custom fragrance creation process was incredible. The team understood exactly what I wanted and created a scent that's uniquely mine. I get compliments everywhere I go!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" alt="Sarah Johnson" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>Custom Fragrance Client</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <span>★★★★★</span>
+                            </div>
+                            <p>"The VIP membership has been worth every penny. Early access to new collections and the personalized service make me feel truly valued as a customer."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg" alt="Michael Chen" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>VIP Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <span>★★★★★</span>
+                            </div>
+                            <p>"The fragrance consultation helped me discover scents I never would have tried on my own. The expert guidance was invaluable in finding my signature fragrance."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg" alt="Emma Davis" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Emma Davis</h4>
+                                <span>Consultation Client</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Begin Your Fragrance Journey?</h2>
+                    <p>Contact us today to schedule a consultation and discover the perfect fragrance service for your needs.</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+                        <a href="products.html" class="btn btn-secondary">Browse Products</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <span>M</span>
+                        </div>
+                        <div class="logo-text">
+                            <h3>Marc Aroma</h3>
+                            <p>Luxury Fragrances</p>
+                        </div>
+                    </div>
+                    <p>Crafting luxury fragrances that capture the essence of sophistication and elegance.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get updates on new arrivals and exclusive offers.</p>
+                    <form class="footer-newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Marc Aroma. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
