@@ -5,48 +5,72 @@ const products = [
         name: 'Midnight Elegance',
         category: 'men',
         price: 120,
+        originalPrice: 150,
         image: 'https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg',
         description: 'A sophisticated blend of cedar, bergamot, and amber.',
+        featured: true,
+        rating: 4.8,
+        reviews: 124
     },
     {
         id: 2,
         name: 'Rose Mystique',
         category: 'women',
         price: 135,
+        originalPrice: 160,
         image: 'https://images.pexels.com/photos/1190829/pexels-photo-1190829.jpeg',
         description: 'Delicate rose petals with hints of vanilla and musk.',
+        featured: true,
+        rating: 4.9,
+        reviews: 89
     },
     {
         id: 3,
         name: 'Ocean Breeze',
         category: 'unisex',
         price: 110,
+        originalPrice: 130,
         image: 'https://images.pexels.com/photos/1190830/pexels-photo-1190830.jpeg',
         description: 'Fresh aquatic notes with citrus and marine accords.',
+        featured: false,
+        rating: 4.7,
+        reviews: 156
     },
     {
         id: 4,
         name: 'Golden Sunset',
         category: 'women',
         price: 145,
+        originalPrice: 170,
         image: 'https://images.pexels.com/photos/1190831/pexels-photo-1190831.jpeg',
         description: 'Warm amber and honey with floral undertones.',
+        featured: true,
+        rating: 4.8,
+        reviews: 203
     },
     {
         id: 5,
         name: 'Urban Legend',
         category: 'men',
         price: 125,
+        originalPrice: 155,
         image: 'https://images.pexels.com/photos/1190832/pexels-photo-1190832.jpeg',
         description: 'Bold spices with leather and tobacco notes.',
+        featured: false,
+        rating: 4.6,
+        reviews: 78
     },
     {
         id: 6,
         name: 'Eternal Spring',
         category: 'unisex',
         price: 115,
+        originalPrice: 140,
         image: 'https://images.pexels.com/photos/1190833/pexels-photo-1190833.jpeg',
         description: 'Fresh florals with green leaves and white tea.',
+        featured: true,
+        rating: 4.9,
+        reviews: 167
     },
 ];
 
@@ -56,12 +80,14 @@ const navMobile = document.getElementById('nav-mobile');
 const navLinks = document.querySelectorAll('.nav-link');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const productsGrid = document.getElementById('products-grid');
-const featuredGrid = document.getElementById('featured-grid');
 const newsletterForm = document.getElementById('newsletter-form');
-const newsletterSuccess = document.getElementById('newsletter-success');
 const contactForm = document.getElementById('contact-form');
-const footerNewsletterForm = document.getElementById('footer-newsletter-form');
 const cartBtn = document.getElementById('cart-btn');
+const searchBtn = document.getElementById('search-btn');
+const searchModal = document.getElementById('search-modal');
+const closeSearch = document.getElementById('close-search');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
 
 // Cart functionality
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -140,15 +166,31 @@ function updateActiveNavLink() {
     });
 }
 
-window.addEventListener('scroll', updateActiveNavLink);
+// Header scroll effect
+function handleHeaderScroll() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+}
+
+window.addEventListener('scroll', () => {
+    updateActiveNavLink();
+    handleHeaderScroll();
+});
 
 // Create Product Card HTML
 function createProductCard(product) {
+    const discount = product.originalPrice ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
+    
     return `
         <div class="product-card" data-category="${product.category}">
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}" loading="lazy">
                 <div class="product-overlay"></div>
+                ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ''}
                 <div class="product-actions">
                     <button class="action-btn" onclick="toggleWishlist(${product.id})" aria-label="Add to wishlist">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -162,13 +204,22 @@ function createProductCard(product) {
                         </svg>
                     </button>
                 </div>
-                <div class="product-category">${product.category}</div>
             </div>
             <div class="product-info">
+                <div class="product-category">${product.category}</div>
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
+                <div class="product-rating">
+                    <div class="stars">
+                        ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
+                    </div>
+                    <span class="rating-text">${product.rating} (${product.reviews} reviews)</span>
+                </div>
                 <div class="product-footer">
-                    <span class="product-price">$${product.price}</span>
+                    <div class="product-price">
+                        <span class="current-price">$${product.price}</span>
+                        ${product.originalPrice ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
+                    </div>
                     <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
                 </div>
             </div>
@@ -206,7 +257,62 @@ filterBtns.forEach(btn => {
     });
 });
 
-// Newsletter Form Submission (Main)
+// Search functionality
+if (searchBtn && searchModal) {
+    searchBtn.addEventListener('click', () => {
+        searchModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        searchInput.focus();
+    });
+}
+
+if (closeSearch) {
+    closeSearch.addEventListener('click', () => {
+        searchModal.classList.remove('active');
+        document.body.style.overflow = '';
+        searchInput.value = '';
+        searchResults.innerHTML = '';
+    });
+}
+
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        if (query.length > 2) {
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query) ||
+                product.description.toLowerCase().includes(query) ||
+                product.category.toLowerCase().includes(query)
+            );
+            
+            if (filteredProducts.length > 0) {
+                searchResults.innerHTML = filteredProducts.map(product => `
+                    <div class="search-result-item" onclick="selectProduct(${product.id})">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="result-info">
+                            <h4>${product.name}</h4>
+                            <p>${product.description}</p>
+                            <span class="result-price">$${product.price}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                searchResults.innerHTML = '<div class="no-results">No products found</div>';
+            }
+        } else {
+            searchResults.innerHTML = '';
+        }
+    });
+}
+
+function selectProduct(productId) {
+    searchModal.classList.remove('active');
+    document.body.style.overflow = '';
+    // Scroll to products section and highlight the product
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Newsletter Form Submission
 if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -214,27 +320,7 @@ if (newsletterForm) {
         const email = newsletterForm.querySelector('input[type="email"]').value;
         
         // Show success message
-        newsletterForm.style.display = 'none';
-        newsletterSuccess.classList.add('show');
-        
-        // Reset form and hide success message after 3 seconds
-        setTimeout(() => {
-            newsletterForm.style.display = 'flex';
-            newsletterSuccess.classList.remove('show');
-            newsletterForm.reset();
-        }, 3000);
-    });
-}
-
-// Footer Newsletter Form Submission
-if (footerNewsletterForm) {
-    footerNewsletterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const email = footerNewsletterForm.querySelector('input[type="email"]').value;
-        
-        // Show success message
-        const button = footerNewsletterForm.querySelector('button');
+        const button = newsletterForm.querySelector('button');
         const originalText = button.textContent;
         button.textContent = 'Subscribed!';
         button.style.background = '#28a745';
@@ -243,7 +329,7 @@ if (footerNewsletterForm) {
         setTimeout(() => {
             button.textContent = originalText;
             button.style.background = '';
-            footerNewsletterForm.reset();
+            newsletterForm.reset();
         }, 2000);
     });
 }
@@ -314,36 +400,11 @@ function quickView(productId) {
 // Cart functionality
 function updateCartCount() {
     const count = cart.reduce((total, item) => total + item.quantity, 0);
+    const cartCount = document.getElementById('cart-count');
     
-    if (cartBtn && count > 0) {
-        // Remove existing count if any
-        const existingCount = cartBtn.querySelector('.cart-count');
-        if (existingCount) {
-            existingCount.remove();
-        }
-        
-        // Add new count
-        const countElement = document.createElement('span');
-        countElement.className = 'cart-count';
-        countElement.textContent = count;
-        countElement.style.cssText = `
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--gold);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        `;
-        
-        cartBtn.style.position = 'relative';
-        cartBtn.appendChild(countElement);
+    if (cartCount) {
+        cartCount.textContent = count;
+        cartCount.style.display = count > 0 ? 'flex' : 'none';
     }
 }
 
@@ -376,10 +437,6 @@ function createObserver() {
 
 // Initialize App
 function initApp() {
-    // Display featured products (first 3)
-    const featuredProducts = products.slice(0, 3);
-    displayProducts(featuredProducts, featuredGrid);
-    
     // Display all products initially
     displayProducts(products, productsGrid);
     
@@ -490,7 +547,16 @@ function addScrollToTop() {
 // Initialize scroll to top
 addScrollToTop();
 
+// Close modals when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+        searchModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
 // Make functions globally available
 window.addToCart = addToCart;
 window.toggleWishlist = toggleWishlist;
 window.quickView = quickView;
+window.selectProduct = selectProduct;

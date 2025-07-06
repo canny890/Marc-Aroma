@@ -3,6 +3,7 @@
     min-height: 100vh;
     background: var(--cream);
     padding: 2rem 0;
+    margin-top: 80px;
 }
 
 /* Breadcrumb */
@@ -62,7 +63,7 @@
     background: white;
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .cart-items-header {
@@ -262,7 +263,7 @@
     background: white;
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     margin-bottom: 1.5rem;
 }
 
@@ -406,7 +407,7 @@
     background: white;
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .trust-badge {
@@ -425,31 +426,6 @@
 .trust-badge svg {
     color: var(--gold);
     flex-shrink: 0;
-}
-
-/* Cart Count Badge */
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--gold);
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-}
-
-.cart-btn {
-    position: relative;
-}
-
-.cart-btn.active {
-    color: var(--gold);
 }
 
 /* Payment Modal */
@@ -737,24 +713,6 @@
 /* Credit Card Form */
 .credit-card-form {
     position: relative;
-}
-
-.card-icons {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: 0.25rem;
-}
-
-.card-icon {
-    font-size: 0.75rem;
-    font-weight: bold;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    background: var(--gray-100);
-    color: var(--gray-600);
 }
 
 /* Form Actions */

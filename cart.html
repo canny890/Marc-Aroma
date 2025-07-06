@@ -7,9 +7,10 @@
     <meta name="description" content="Review your selected luxury fragrances before checkout. Secure payment and fast delivery available.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/cart.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 </head>
 <body>
     <!-- Header -->
@@ -23,21 +24,22 @@
                     </div>
                     <div class="logo-text">
                         <h1>Marc Aroma</h1>
-                        <p>Essence of Elegance</p>
+                        <p>Luxury Fragrances</p>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation -->
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#products" class="nav-link">Products</a>
                     <a href="index.html#about" class="nav-link">About</a>
+                    <a href="index.html#products" class="nav-link">Products</a>
+                    <a href="index.html#collections" class="nav-link">Collections</a>
                     <a href="index.html#contact" class="nav-link">Contact</a>
                 </nav>
 
-                <!-- Cart & Mobile Menu -->
+                <!-- Header Actions -->
                 <div class="header-actions">
-                    <button class="cart-btn active">
+                    <button class="cart-btn active" aria-label="Shopping Cart">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -45,7 +47,7 @@
                         </svg>
                         <span class="cart-count" id="cart-count">0</span>
                     </button>
-                    <button class="mobile-menu-btn">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
                         <span class="hamburger"></span>
                         <span class="hamburger"></span>
                         <span class="hamburger"></span>
@@ -316,15 +318,6 @@
                                     PayPal
                                 </label>
                             </div>
-                            <div class="payment-method">
-                                <input type="radio" id="apple-pay" name="paymentMethod" value="apple-pay">
-                                <label for="apple-pay">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                    </svg>
-                                    Apple Pay
-                                </label>
-                            </div>
                         </div>
 
                         <!-- Credit Card Form -->
@@ -332,11 +325,6 @@
                             <div class="form-group">
                                 <label for="card-number">Card Number *</label>
                                 <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456" required>
-                                <div class="card-icons">
-                                    <span class="card-icon visa">VISA</span>
-                                    <span class="card-icon mastercard">MC</span>
-                                    <span class="card-icon amex">AMEX</span>
-                                </div>
                             </div>
 
                             <div class="form-row">
@@ -356,16 +344,8 @@
                             </div>
                         </div>
 
-                        <!-- Billing Address -->
-                        <div class="billing-address">
-                            <div class="form-group checkbox-group">
-                                <input type="checkbox" id="same-as-shipping" checked>
-                                <label for="same-as-shipping">Billing address same as shipping</label>
-                            </div>
-                        </div>
-
                         <div class="form-actions">
-                            <button type="button" class="prev-step-btn" data-prev="1">← Back to Shipping</button>
+                            <button type="button" class="prev-step-btn" data-prev="1">← Back</button>
                             <button type="button" class="next-step-btn" data-next="3">Review Order →</button>
                         </div>
                     </div>
@@ -378,30 +358,22 @@
                         <div class="order-review">
                             <div class="review-section">
                                 <h4>Shipping Address</h4>
-                                <div class="review-content" id="review-shipping">
-                                    <!-- Shipping details will be populated here -->
-                                </div>
+                                <div class="review-content" id="review-shipping"></div>
                             </div>
 
                             <div class="review-section">
                                 <h4>Payment Method</h4>
-                                <div class="review-content" id="review-payment">
-                                    <!-- Payment details will be populated here -->
-                                </div>
+                                <div class="review-content" id="review-payment"></div>
                             </div>
 
                             <div class="review-section">
                                 <h4>Order Items</h4>
-                                <div class="review-items" id="review-items">
-                                    <!-- Order items will be populated here -->
-                                </div>
+                                <div class="review-items" id="review-items"></div>
                             </div>
 
                             <div class="review-section">
                                 <h4>Order Total</h4>
-                                <div class="review-total" id="review-total">
-                                    <!-- Order total will be populated here -->
-                                </div>
+                                <div class="review-total" id="review-total"></div>
                             </div>
                         </div>
 
@@ -416,7 +388,7 @@
                         </div>
 
                         <div class="form-actions">
-                            <button type="button" class="prev-step-btn" data-prev="2">← Back to Payment</button>
+                            <button type="button" class="prev-step-btn" data-prev="2">← Back</button>
                             <button type="submit" class="place-order-btn">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
