@@ -51,8 +51,8 @@ const products = [
 ];
 
 // DOM Elements
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navMobile = document.querySelector('.nav-mobile');
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const navMobile = document.getElementById('nav-mobile');
 const navLinks = document.querySelectorAll('.nav-link');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const productsGrid = document.getElementById('products-grid');
@@ -61,6 +61,7 @@ const newsletterForm = document.getElementById('newsletter-form');
 const newsletterSuccess = document.getElementById('newsletter-success');
 const contactForm = document.getElementById('contact-form');
 const footerNewsletterForm = document.getElementById('footer-newsletter-form');
+const cartBtn = document.getElementById('cart-btn');
 
 // Cart functionality
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -90,6 +91,13 @@ navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
+        
+        // Handle external links (cart page)
+        if (targetId.includes('.html')) {
+            window.location.href = targetId;
+            return;
+        }
+        
         const targetSection = document.querySelector(targetId);
         
         if (targetSection) {
@@ -139,7 +147,7 @@ function createProductCard(product) {
     return `
         <div class="product-card" data-category="${product.category}">
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
                 <div class="product-overlay"></div>
                 <div class="product-actions">
                     <button class="action-btn" onclick="toggleWishlist(${product.id})" aria-label="Add to wishlist">
@@ -205,9 +213,6 @@ if (newsletterForm) {
         
         const email = newsletterForm.querySelector('input[type="email"]').value;
         
-        // Simulate newsletter subscription
-        console.log('Newsletter subscription:', email);
-        
         // Show success message
         newsletterForm.style.display = 'none';
         newsletterSuccess.classList.add('show');
@@ -227,9 +232,6 @@ if (footerNewsletterForm) {
         e.preventDefault();
         
         const email = footerNewsletterForm.querySelector('input[type="email"]').value;
-        
-        // Simulate newsletter subscription
-        console.log('Footer Newsletter subscription:', email);
         
         // Show success message
         const button = footerNewsletterForm.querySelector('button');
@@ -254,10 +256,7 @@ if (contactForm) {
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
         
-        // Simulate form submission
-        console.log('Contact form submission:', data);
-        
-        // Show success message (you can customize this)
+        // Show success message
         alert('Thank you for your message! We\'ll get back to you soon.');
         
         // Reset form
@@ -295,16 +294,12 @@ function addToCart(productId) {
             button.textContent = originalText;
             button.style.background = '';
         }, 1000);
-        
-        console.log('Cart updated:', cart);
     }
 }
 
 function toggleWishlist(productId) {
     const product = products.find(p => p.id === productId);
     if (product) {
-        console.log('Toggled wishlist:', product);
-        // You can implement wishlist functionality here
         alert(`${product.name} added to wishlist!`);
     }
 }
@@ -312,15 +307,12 @@ function toggleWishlist(productId) {
 function quickView(productId) {
     const product = products.find(p => p.id === productId);
     if (product) {
-        console.log('Quick view:', product);
-        // You can implement quick view modal here
         alert(`Quick view: ${product.name}\n${product.description}\nPrice: $${product.price}`);
     }
 }
 
 // Cart functionality
 function updateCartCount() {
-    const cartBtn = document.querySelector('.cart-btn');
     const count = cart.reduce((total, item) => total + item.quantity, 0);
     
     if (cartBtn && count > 0) {
@@ -352,12 +344,14 @@ function updateCartCount() {
         
         cartBtn.style.position = 'relative';
         cartBtn.appendChild(countElement);
-        
-        // Add click handler to go to cart page
-        cartBtn.onclick = () => {
-            window.location.href = 'cart.html';
-        };
     }
+}
+
+// Cart button click handler
+if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+        window.location.href = 'cart.html';
+    });
 }
 
 // Intersection Observer for Animations
@@ -445,56 +439,58 @@ function preloadImages() {
 // Call preload function
 preloadImages();
 
-// Footer scroll to top functionality
+// Scroll to top functionality
 function addScrollToTop() {
-    const footer = document.querySelector('.footer');
-    if (footer) {
-        const scrollToTopBtn = document.createElement('button');
-        scrollToTopBtn.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="19" x2="12" y2="5"></line>
-                <polyline points="5,12 12,5 19,12"></polyline>
-            </svg>
-        `;
-        scrollToTopBtn.className = 'scroll-to-top';
-        scrollToTopBtn.style.cssText = `
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gold);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        `;
-        
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5,12 12,5 19,12"></polyline>
+        </svg>
+    `;
+    scrollToTopBtn.className = 'scroll-to-top';
+    scrollToTopBtn.style.cssText = `
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        background: var(--gold);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    `;
+    
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-        
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                scrollToTopBtn.style.display = 'flex';
-            } else {
-                scrollToTopBtn.style.display = 'none';
-            }
-        });
-        
-        document.body.appendChild(scrollToTopBtn);
-    }
+    });
+    
+    // Show/hide scroll to top button
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            scrollToTopBtn.style.display = 'flex';
+        } else {
+            scrollToTopBtn.style.display = 'none';
+        }
+    });
+    
+    document.body.appendChild(scrollToTopBtn);
 }
 
 // Initialize scroll to top
 addScrollToTop();
+
+// Make functions globally available
+window.addToCart = addToCart;
+window.toggleWishlist = toggleWishlist;
+window.quickView = quickView;
