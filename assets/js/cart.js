@@ -1,5 +1,4 @@
 // Cart functionality
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Get products data from global scope or use fallback
 const products = window.products || [
