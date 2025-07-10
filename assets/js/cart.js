@@ -1,57 +1,5 @@
 // Cart functionality
 
-// Get products data from global scope or use fallback
-const products = window.products || [
-    {
-        id: 1,
-        name: 'Midnight Elegance',
-        category: 'men',
-        price: 120,
-        image: 'https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg',
-        description: 'A sophisticated blend of cedar, bergamot, and amber.',
-    },
-    {
-        id: 2,
-        name: 'Rose Mystique',
-        category: 'women',
-        price: 135,
-        image: 'https://images.pexels.com/photos/1190829/pexels-photo-1190829.jpeg',
-        description: 'Delicate rose petals with hints of vanilla and musk.',
-    },
-    {
-        id: 3,
-        name: 'Ocean Breeze',
-        category: 'unisex',
-        price: 110,
-        image: 'https://images.pexels.com/photos/1190830/pexels-photo-1190830.jpeg',
-        description: 'Fresh aquatic notes with citrus and marine accords.',
-    },
-    {
-        id: 4,
-        name: 'Golden Sunset',
-        category: 'women',
-        price: 145,
-        image: 'https://images.pexels.com/photos/1190831/pexels-photo-1190831.jpeg',
-        description: 'Warm amber and honey with floral undertones.',
-    },
-    {
-        id: 5,
-        name: 'Urban Legend',
-        category: 'men',
-        price: 125,
-        image: 'https://images.pexels.com/photos/1190832/pexels-photo-1190832.jpeg',
-        description: 'Bold spices with leather and tobacco notes.',
-    },
-    {
-        id: 6,
-        name: 'Eternal Spring',
-        category: 'unisex',
-        price: 115,
-        image: 'https://images.pexels.com/photos/1190833/pexels-photo-1190833.jpeg',
-        description: 'Fresh florals with green leaves and white tea.',
-    },
-];
-
 // DOM Elements
 const cartItemsList = document.getElementById('cart-items-list');
 const emptyCart = document.getElementById('empty-cart');
