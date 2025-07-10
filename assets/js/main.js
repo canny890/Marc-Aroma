@@ -189,18 +189,32 @@ if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const email = newsletterForm.querySelector('input[type="email"]').value;
+        const emailInput = newsletterForm.querySelector('input[type="email"]');
+        const email = emailInput.value;
+        
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+        }
         
         // Show success message
         const button = newsletterForm.querySelector('button');
         const originalText = button.textContent;
+        const originalBackground = button.style.background;
+        
         button.textContent = 'Subscribed!';
         button.style.background = '#28a745';
+        button.disabled = true;
+        
+        showNotification('Successfully subscribed to newsletter!', 'success');
         
         // Reset after 2 seconds
         setTimeout(() => {
             button.textContent = originalText;
-            button.style.background = '';
+            button.style.background = originalBackground;
+            button.disabled = false;
             newsletterForm.reset();
         }, 2000);
     });
@@ -252,6 +266,12 @@ function createProductCard(product) {
     `;
 }
 
+// Make createProductCard globally available
+window.createProductCard = createProductCard;
+
+// Make products data globally available
+window.products = products;
+
 // Display Products
 function displayProducts(productsToShow, container) {
     if (container) {
@@ -280,29 +300,80 @@ function addToCart(productId) {
         updateCartCount();
         
         // Show success message with animation
-        const button = event.target;
-        const originalText = button.textContent;
-        button.textContent = 'Added!';
-        button.style.background = 'var(--primary-black)';
+        const button = event?.target || document.querySelector(`[onclick="addToCart(${productId})"]`);
+        if (button) {
+            const originalText = button.textContent;
+            button.textContent = 'Added!';
+            button.style.background = 'var(--primary-black)';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 1000);
+        }
         
-        setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-        }, 1000);
+        // Show a more visible notification
+        showNotification(`${product.name} added to cart!`, 'success');
     }
+}
+
+// Show notification function
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 10001;
+        font-weight: 500;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 3000);
 }
 
 function toggleWishlist(productId) {
     const product = products.find(p => p.id === productId);
     if (product) {
-        alert(`${product.name} added to wishlist!`);
+        showNotification(`${product.name} added to wishlist!`, 'success');
     }
 }
 
 function quickView(productId) {
     const product = products.find(p => p.id === productId);
     if (product) {
-        alert(`Quick view: ${product.name}\n${product.description}\nPrice: $${product.price}`);
+        showNotification(`Quick view: ${product.name}`, 'info');
+        // In a real application, this would open a modal with product details
     }
 }
 
@@ -359,8 +430,28 @@ window.addEventListener('resize', () => {
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', initApp);
 
+// Error handling for missing elements
+function safeQuerySelector(selector) {
+    try {
+        return document.querySelector(selector);
+    } catch (error) {
+        console.warn(`Element not found: ${selector}`);
+        return null;
+    }
+}
+
+function safeQuerySelectorAll(selector) {
+    try {
+        return document.querySelectorAll(selector);
+    } catch (error) {
+        console.warn(`Elements not found: ${selector}`);
+        return [];
+    }
+}
+
 // Make functions globally available
 window.addToCart = addToCart;
 window.toggleWishlist = toggleWishlist;
 window.quickView = quickView;
 window.selectProduct = selectProduct;
+window.showNotification = showNotification;

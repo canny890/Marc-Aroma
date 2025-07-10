@@ -35,7 +35,14 @@ function initContactForm() {
             const missingFields = requiredFields.filter(field => !data[field]);
             
             if (missingFields.length > 0) {
-                alert('Please fill in all required fields.');
+                showFormMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showFormMessage('Please enter a valid email address.', 'error');
                 return;
             }
             
@@ -47,12 +54,47 @@ function initContactForm() {
             submitBtn.disabled = true;
             
             setTimeout(() => {
-                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                showFormMessage('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
                 contactForm.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             }, 2000);
         });
+    }
+}
+
+// Show form message function
+function showFormMessage(message, type) {
+    // Remove existing message
+    const existingMessage = document.querySelector('.form-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Create message element
+    const messageElement = document.createElement('div');
+    messageElement.className = `form-message form-message-${type}`;
+    messageElement.textContent = message;
+    messageElement.style.cssText = `
+        padding: 12px 16px;
+        border-radius: 6px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        background: ${type === 'success' ? '#d1fae5' : '#fee2e2'};
+        color: ${type === 'success' ? '#065f46' : '#991b1b'};
+        border: 1px solid ${type === 'success' ? '#a7f3d0' : '#fca5a5'};
+    `;
+    
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.insertBefore(messageElement, contactForm.firstChild);
+        
+        // Remove message after 5 seconds for success, 8 seconds for error
+        setTimeout(() => {
+            if (messageElement.parentNode) {
+                messageElement.remove();
+            }
+        }, type === 'success' ? 5000 : 8000);
     }
 }
 
