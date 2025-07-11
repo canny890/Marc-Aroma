@@ -12,7 +12,10 @@ const products = [
         rating: 4.8,
         reviews: 124,
         collection: 'oriental',
-        season: 'winter'
+        season: 'winter',
+        notes: ['woody', 'spicy', 'citrus'],
+        sizes: ['50ml', '100ml'],
+        intensity: 'strong'
     },
     {
         id: 2,
@@ -26,7 +29,10 @@ const products = [
         rating: 4.9,
         reviews: 89,
         collection: 'floral',
-        season: 'summer'
+        season: 'summer',
+        notes: ['floral', 'rose', 'vanilla'],
+        sizes: ['30ml', '50ml', '100ml'],
+        intensity: 'moderate'
     },
     {
         id: 3,
@@ -40,7 +46,10 @@ const products = [
         rating: 4.7,
         reviews: 156,
         collection: 'fresh',
-        season: 'summer'
+        season: 'summer',
+        notes: ['fresh', 'citrus', 'aquatic'],
+        sizes: ['30ml', '50ml', '100ml'],
+        intensity: 'light'
     },
     {
         id: 4,
@@ -54,7 +63,10 @@ const products = [
         rating: 4.8,
         reviews: 203,
         collection: 'oriental',
-        season: 'winter'
+        season: 'winter',
+        notes: ['floral', 'sweet', 'amber'],
+        sizes: ['50ml', '100ml'],
+        intensity: 'moderate'
     },
     {
         id: 5,
@@ -68,7 +80,10 @@ const products = [
         rating: 4.6,
         reviews: 78,
         collection: 'oriental',
-        season: 'winter'
+        season: 'winter',
+        notes: ['spicy', 'leather', 'woody'],
+        sizes: ['30ml', '50ml', '100ml'],
+        intensity: 'strong'
     },
     {
         id: 6,
@@ -82,7 +97,10 @@ const products = [
         rating: 4.9,
         reviews: 167,
         collection: 'fresh',
-        season: 'summer'
+        season: 'summer',
+        notes: ['fresh', 'green', 'clean'],
+        sizes: ['50ml', '100ml'],
+        intensity: 'light'
     },
 ];
 
