@@ -1,91 +1,6 @@
 // Products page specific functionality
 
-// Import products data from main.js
-const products = window.products || [
-    {
-        id: 1,
-        name: 'Midnight Elegance',
-        category: 'men',
-        price: 120,
-        originalPrice: 150,
-        image: 'https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg',
-        description: 'A sophisticated blend of cedar, bergamot, and amber.',
-        featured: true,
-        rating: 4.8,
-        reviews: 124,
-        collection: 'oriental'
-    },
-    {
-        id: 2,
-        name: 'Rose Mystique',
-        category: 'women',
-        price: 135,
-        originalPrice: 160,
-        image: 'https://images.pexels.com/photos/1190829/pexels-photo-1190829.jpeg',
-        description: 'Delicate rose petals with hints of vanilla and musk.',
-        featured: true,
-        rating: 4.9,
-        reviews: 89,
-        collection: 'floral',
-        season: 'summer'
-    },
-    {
-        id: 3,
-        name: 'Ocean Breeze',
-        category: 'unisex',
-        price: 110,
-        originalPrice: 130,
-        image: 'https://images.pexels.com/photos/1190830/pexels-photo-1190830.jpeg',
-        description: 'Fresh aquatic notes with citrus and marine accords.',
-        featured: false,
-        rating: 4.7,
-        reviews: 156,
-        collection: 'fresh',
-        season: 'summer'
-    },
-    {
-        id: 4,
-        name: 'Golden Sunset',
-        category: 'women',
-        price: 145,
-        originalPrice: 170,
-        image: 'https://images.pexels.com/photos/1190831/pexels-photo-1190831.jpeg',
-        description: 'Warm amber and honey with floral undertones.',
-        featured: true,
-        rating: 4.8,
-        reviews: 203,
-        collection: 'oriental',
-        season: 'winter'
-    },
-    {
-        id: 5,
-        name: 'Urban Legend',
-        category: 'men',
-        price: 125,
-        originalPrice: 155,
-        image: 'https://images.pexels.com/photos/1190832/pexels-photo-1190832.jpeg',
-        description: 'Bold spices with leather and tobacco notes.',
-        featured: false,
-        rating: 4.6,
-        reviews: 78,
-        collection: 'oriental',
-        season: 'winter'
-    },
-    {
-        id: 6,
-        name: 'Eternal Spring',
-        category: 'unisex',
-        price: 115,
-        originalPrice: 140,
-        image: 'https://images.pexels.com/photos/1190833/pexels-photo-1190833.jpeg',
-        description: 'Fresh florals with green leaves and white tea.',
-        featured: true,
-        rating: 4.9,
-        reviews: 167,
-        collection: 'fresh',
-        season: 'summer'
-    },
-];
+// Use products data from main.js (available as window.products)
 
 let currentFilters = {
     category: 'all',
@@ -176,7 +91,7 @@ function setupEventListeners() {
 
 // Apply filters
 function applyFilters() {
-    let filteredProducts = [...products];
+    let filteredProducts = [...window.products];
     
     // Category filter
     if (currentFilters.category !== 'all') {
