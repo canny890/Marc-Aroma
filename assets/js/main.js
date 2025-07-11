@@ -11,7 +11,8 @@ const products = [
         featured: true,
         rating: 4.8,
         reviews: 124,
-        collection: 'oriental'
+        collection: 'oriental',
+        season: 'winter'
     },
     {
         id: 2,
@@ -24,7 +25,8 @@ const products = [
         featured: true,
         rating: 4.9,
         reviews: 89,
-        collection: 'floral'
+        collection: 'floral',
+        season: 'summer'
     },
     {
         id: 3,
@@ -37,7 +39,8 @@ const products = [
         featured: false,
         rating: 4.7,
         reviews: 156,
-        collection: 'fresh'
+        collection: 'fresh',
+        season: 'summer'
     },
     {
         id: 4,
@@ -50,7 +53,8 @@ const products = [
         featured: true,
         rating: 4.8,
         reviews: 203,
-        collection: 'oriental'
+        collection: 'oriental',
+        season: 'winter'
     },
     {
         id: 5,
@@ -63,7 +67,8 @@ const products = [
         featured: false,
         rating: 4.6,
         reviews: 78,
-        collection: 'oriental'
+        collection: 'oriental',
+        season: 'winter'
     },
     {
         id: 6,
@@ -76,7 +81,8 @@ const products = [
         featured: true,
         rating: 4.9,
         reviews: 167,
-        collection: 'fresh'
+        collection: 'fresh',
+        season: 'summer'
     },
 ];
 

@@ -26,7 +26,8 @@ const products = window.products || [
         featured: true,
         rating: 4.9,
         reviews: 89,
-        collection: 'floral'
+        collection: 'floral',
+        season: 'summer'
     },
     {
         id: 3,
@@ -39,7 +40,8 @@ const products = window.products || [
         featured: false,
         rating: 4.7,
         reviews: 156,
-        collection: 'fresh'
+        collection: 'fresh',
+        season: 'summer'
     },
     {
         id: 4,
@@ -52,7 +54,8 @@ const products = window.products || [
         featured: true,
         rating: 4.8,
         reviews: 203,
-        collection: 'oriental'
+        collection: 'oriental',
+        season: 'winter'
     },
     {
         id: 5,
@@ -65,7 +68,8 @@ const products = window.products || [
         featured: false,
         rating: 4.6,
         reviews: 78,
-        collection: 'oriental'
+        collection: 'oriental',
+        season: 'winter'
     },
     {
         id: 6,
@@ -78,7 +82,8 @@ const products = window.products || [
         featured: true,
         rating: 4.9,
         reviews: 167,
-        collection: 'fresh'
+        collection: 'fresh',
+        season: 'summer'
     },
 ];
 
@@ -345,8 +350,25 @@ function filterByCollection(collection) {
     }
 }
 
+// Filter by season (called from seasonal collection buttons)
+function filterBySeason(season) {
+    // This would filter products by season
+    // For now, just scroll to products
+    if (productsGrid) {
+        productsGrid.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Filter by category (called from gender collection buttons)
+function filterByCategory(category) {
+    // This would filter products by category
+    // For now, just scroll to products
+    if (productsGrid) {
+        productsGrid.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initProductsPage);
 
 // Make functions globally available
-window.filterByCollection = filterByCollection;

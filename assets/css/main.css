@@ -1204,6 +1204,232 @@ section {
     opacity: 0.9;
 }
 
+/* Summer & Winter Collection Sections */
+.summer-collection {
+    background: var(--bg-gray);
+}
+
+.winter-collection {
+    background: var(--pure-white);
+}
+
+.collection-showcase {
+    margin-top: var(--spacing-2xl);
+}
+
+.collection-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .collection-content {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .collection-showcase.reverse .collection-content {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .collection-showcase.reverse .collection-text {
+        order: 2;
+    }
+    
+    .collection-showcase.reverse .collection-image {
+        order: 1;
+    }
+}
+
+.collection-text h3 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--primary-black);
+}
+
+.collection-text p {
+    color: var(--medium-gray);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.125rem;
+}
+
+.collection-highlights {
+    list-style: none;
+    margin-bottom: var(--spacing-xl);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+}
+
+.collection-highlights li {
+    color: var(--dark-gray);
+    font-weight: 500;
+    position: relative;
+    padding-left: var(--spacing-lg);
+}
+
+.collection-highlights li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-black);
+    font-weight: bold;
+}
+
+.collection-image {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.collection-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.collection-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Gender Collections Section */
+.gender-collections {
+    background: var(--primary-black);
+    color: var(--pure-white);
+}
+
+.gender-collections .section-header h2,
+.gender-collections .section-header p {
+    color: var(--pure-white);
+}
+
+.gender-collections .section-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--pure-white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gender-collections-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+}
+
+@media (min-width: 768px) {
+    .gender-collections-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .gender-collections-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.gender-collection-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 500px;
+    transition: transform var(--transition-normal);
+}
+
+.gender-collection-card:hover {
+    transform: translateY(-5px);
+}
+
+.gender-collection-card .collection-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.gender-collection-card .collection-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.gender-collection-card:hover .collection-image img {
+    transform: scale(1.1);
+}
+
+.gender-collection-card .collection-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--spacing-xl);
+    color: var(--pure-white);
+    transition: all var(--transition-normal);
+}
+
+.gender-collection-card:hover .collection-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4));
+}
+
+.collection-info h3 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--pure-white);
+}
+
+.collection-info p {
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.collection-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.collection-features span {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--pure-white);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive Design for Collections */
+@media (max-width: 768px) {
+    .collection-highlights {
+        grid-template-columns: 1fr;
+    }
+    
+    .collection-text h3 {
+        font-size: 1.75rem;
+    }
+    
+    .collection-image img {
+        height: 300px;
+    }
+    
+    .gender-collection-card {
+        height: 400px;
+    }
+    
+    .collection-info h3 {
+        font-size: 1.5rem;
+    }
+}
 /* Testimonials Section */
 .testimonials-section {
     background: var(--pure-white);
